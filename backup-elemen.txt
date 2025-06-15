@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <!-- Carousel & Banner -->
+    <section class="my-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-8">
+                    <div id="carouselExample" class="carousel slide shadow-sm" data-bs-ride="carousel">
+                        <!-- Indicator Bullets -->
+                        <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                            <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                            <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                        </div>
+
+                        <!-- Carousel Items -->
+                        <div class="carousel-inner rounded">
+                            <div class="carousel-item active">
+                                <img src="/gusoft/assets/images/slide1.jpg" class="d-block w-100" alt="Slide 1">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="/gusoft/assets/images/slide2.jpg" class="d-block w-100" alt="Slide 2">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="/gusoft/assets/images/slide3.jpg" class="d-block w-100" alt="Slide 3">
+                            </div>
+                        </div>
+
+                        <!-- Previous & Next Buttons -->
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Sebelumnya</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Berikutnya</span>
+                        </button>
+                    </div>
+
+                </div>
+                <div class="col-md-4">
+                    <img src="/gusoft/assets/images/banner.jpg" class="img-fluid rounded shadow-sm banner-img" alt="Banner">
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- grid products -->
+<?php
+async function loadMore(kategoriId) {
+            if (!loaded[kategoriId]) loaded[kategoriId] = 0;
+
+            const isExpanded = loaded[kategoriId] >= allCounts[kategoriId];
+
+            if (isExpanded) {
+                document.getElementById(`produk-container-${kategoriId}`).innerHTML = '';
+                loaded[kategoriId] = 0;
+                await loadProducts(kategoriId, initialLimit, 0);
+                loaded[kategoriId] = initialLimit;
+                document.getElementById(`load-btn-${kategoriId}`).innerText = 'Tampilkan Lebih Banyak';
+            } else {
+                await loadProducts(kategoriId, initialLimit, loaded[kategoriId]);
+                loaded[kategoriId] += initialLimit;
+
+                if (loaded[kategoriId] >= allCounts[kategoriId]) {
+                    document.getElementById(`load-btn-${kategoriId}`).innerText = 'Tampilkan Lebih Sedikit';
+                }
+            }
+        }
+?>
+
+
+</body>
+
+</html>

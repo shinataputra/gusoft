@@ -1,0 +1,29 @@
+.
+├── app
+│   ├── auth
+│   │   ├── login.php
+│   │   ├── logout.php
+│   │   └── register.php
+│   ├── dashboard
+│   │   ├── admin.php
+│   │   ├── load_produk.php
+│   │   ├── product_delete.php
+│   │   ├── product_edit.php
+│   │   ├── tambah_produk.php
+│   │   └── user.php
+│   ├── db.php
+│   ├── home.php
+│   └── uploadapp
+│       ├── 1749135448_0101737937 - Berita Acara Kesesuaian Unggah Data.pdf
+│       └── 1749136557_0101737937 - Berita Acara Kesesuaian Unggah Data.pdf
+├── assets
+│   └── images
+│       ├── banner.jpg
+│       ├── slide1.jpg
+│       ├── slide2.jpg
+│       └── slide3.jpg
+├── public
+│   └── index.php
+└── struktur.txt
+
+8 directories, 19 files

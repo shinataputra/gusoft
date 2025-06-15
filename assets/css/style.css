@@ -1,0 +1,258 @@
+/* Navbar */
+.navbar .nav-link {
+    font-weight: 500;
+    color: #33334b;
+    transition: color 0.3s ease;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link:focus {
+    color: #6c64fb;
+}
+
+.navbar-brand {
+    font-size: 1.25rem;
+    color: #6c64fb !important;
+}
+
+/* Thumbnail & Banner */
+.product-thumbnail {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    background: #f5f5f5;
+}
+
+.highlight-section {
+  background: #f6f7ff;
+  padding: 60px 0;
+}
+
+.carousel-inner img,
+.banner-img {
+    height: 400px;
+    object-fit: cover;
+}
+
+/* Login */
+.body-login {
+    background: #f2f6fc;
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    max-width: 900px;
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    margin: auto;
+}
+
+.login-image {
+    background: linear-gradient(to top right, #ffffff, #ffffff);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+}
+
+.login-image img {
+    max-width: 100%;
+    height: auto;
+}
+
+.login-form {
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center; 
+    border-radius: 12px;
+    box-shadow: none;
+}
+
+.login-form h3 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #4a458e;
+}
+
+.login-form p {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    color: #33334b;
+}
+
+.login-form form {
+    text-align: left;
+    margin-top: 1.5rem;
+}
+
+.form-control {
+    border-radius: 12px;
+}
+
+.btn-primary {
+    border-radius: 12px;
+    font-weight: bold;
+    background-color: #6c64fb;
+    border-color: #6c64fb;
+}
+
+.btn-primary:focus:active {
+  background-color: #4a458e !important; /* warna lebih gelap saat ditekan */
+  border-color: #4a458e !important;
+  color: #fff !important;
+  box-shadow: none;
+}
+
+.btn-primary:hover {
+    background-color: #4a458e;
+    border-color: #4a458e;
+}
+
+.btn-outline-primary {
+  color: #6c64fb;
+  border-color: #6c64fb;
+  font-weight: 500;
+  border-radius: 12px;
+}
+
+.btn-outline-primary:hover {
+  background-color: #6c64fb;
+  color: #fff;
+  border-color: #6c64fb;
+}
+
+.btn-outline-primary {
+  color: #6c64fb;
+  border-color: #6c64fb;
+  font-weight: 500;
+  border-radius: 12px;
+  background-color: transparent;
+}
+.btn-outline-primary:focus:active {
+  background-color: #4a458e !important; /* warna lebih gelap saat ditekan */
+  border-color: #4a458e !important;
+  color: #fff !important;
+  box-shadow: none;
+}
+
+
+.text-muted a {
+    text-decoration: none;
+    font-weight: 500;
+    color: #6c64fb;
+}
+
+.text-muted a:hover {
+    color: #4a458e;
+}
+
+/* Brand */
+.brand-text {
+    color: #6c64fb;
+    font-weight: 700;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .login-wrapper {
+        grid-template-columns: 1fr;
+    }
+
+    .login-image {
+        display: none;
+    }
+
+    .carousel-inner img {
+    height: 250px;
+  }
+}
+
+
+.load-btn {
+    background-color: #6c64fb;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  padding: 10px 20px;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+.load-btn:hover {
+    background-color: #4a458e;
+}
+
+
+/* card produk */
+.product-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 16px;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.product-thumbnail {
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  object-fit: cover;
+  height: 180px;
+  background: #f8f9fa;
+}
+
+/* Text accent warna */
+.text-accent {
+  color: #4a458e;
+}
+
+/* Tombol sesuai tema */
+.btn-accent {
+  background-color: #6c64fb;
+  border: none;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 12px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-accent:hover {
+  background-color: #4a458e;
+  color: #fff;
+}
+
+/* products */
+.product-item {
+  transition: all 0.4s ease;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.product-item.hide {
+  opacity: 0;
+  transform: translateY(20px);
+  pointer-events: none;
+  height: 0;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+
+
+
