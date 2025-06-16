@@ -40,12 +40,10 @@ $categories = $kategoriStmt->fetchAll();
                         <li class="nav-item">
                             <a class="nav-link" href="/gusoft/public/login">Login</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/gusoft/public/register">Register</a>
-                        </li>
+
                     <?php else: ?>
                         <li class="nav-item">
-                            <a class="nav-link" href="/gusoft/app/dashboard/<?= $_SESSION['user']['role'] ?>.php">Dashboard</a>
+                            <a class="nav-link" href="/gusoft/public/<?= $_SESSION['user']['role'] ?>">Dashboard</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/gusoft/app/auth/logout.php">Logout</a>
