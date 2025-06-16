@@ -32,7 +32,7 @@ foreach ($products as $product): ?>
                 <p class="text-muted small mb-3"><?= htmlspecialchars($product['description']) ?></p>
                 <div class="mt-auto">
                     <div class="fw-bold mb-2 text-accent">Rp <?= number_format($product['price'], 0, ',', '.') ?></div>
-                    <a href="app/auth/login.php" class="btn btn-sm btn-accent w-100">Beli Sekarang</a>
+                    <a href="app/auth/login.php" class="btn btn-accent w-100 py-3">Beli Sekarang</a>
                 </div>
             </div>
         </div>

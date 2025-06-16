@@ -5,7 +5,7 @@ session_start();
 require __DIR__ . '/../app/db.php';
 
 /* Hitung base‑path otomatis (folder tempat script berada) */
-$basePath = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\') . '/';   // contoh: /gusoft/public/
+$basePath = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\') . '/';
 $request  = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
 /* Hilangkan base‑path dan trim / */
@@ -31,8 +31,12 @@ switch ($path) {
         break;
 
     case 'dashboard':
-        require '../app/dashboard/admin.php'; // pastikan ini path benar
+        require '../app/dashboard/admin.php';
         break;
+    case 'admin':
+        require '../app/dashboard/admin.php';
+        break;
+        
     case 'add-produk':
         require __DIR__ . '/../app/dashboard/add_produk.php';
         break;
@@ -46,7 +50,7 @@ switch ($path) {
 
     case (preg_match('/^produk\/(\d+)$/', $path, $m) ? true : false):
         $_GET['id'] = $m[1];
-        require __DIR__ . '/../app/pages/produk_detail.php';   // contoh
+        require __DIR__ . '/../app/pages/produk_detail.php';
         break;
 
     default:
