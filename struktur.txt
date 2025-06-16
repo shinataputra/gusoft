@@ -3,27 +3,35 @@
 │   ├── auth
 │   │   ├── login.php
 │   │   ├── logout.php
-│   │   └── register.php
+│   │   └── register_proses.php
 │   ├── dashboard
+│   │   ├── add_produk.php
 │   │   ├── admin.php
 │   │   ├── load_produk.php
 │   │   ├── product_delete.php
 │   │   ├── product_edit.php
-│   │   ├── tambah_produk.php
+│   │   ├── register.php
 │   │   └── user.php
 │   ├── db.php
-│   ├── home.php
-│   └── uploadapp
-│       ├── 1749135448_0101737937 - Berita Acara Kesesuaian Unggah Data.pdf
-│       └── 1749136557_0101737937 - Berita Acara Kesesuaian Unggah Data.pdf
+│   └── home.php
 ├── assets
+│   ├── css
+│   │   └── style.css
 │   └── images
 │       ├── banner.jpg
+│       ├── hero-section.svg
+│       ├── login-user.svg
+│       ├── pay.svg
+│       ├── payments
 │       ├── slide1.jpg
 │       ├── slide2.jpg
 │       └── slide3.jpg
+├── backup-elemen.txt
 ├── public
-│   └── index.php
+│   ├── index.php
+│   └── upload
+│       ├── app
+│       └── img
 └── struktur.txt
 
-8 directories, 19 files
+12 directories, 23 files
