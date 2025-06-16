@@ -79,6 +79,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <title>Tambah Produk</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="/gusoft/assets/css/style.css">
     <style>
         .sidebar {
             width: 220px;
@@ -89,20 +92,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <body>
     <div class="d-flex">
-        <!-- Sidebar -->
-        <div class="bg-dark text-white p-3 sidebar">
-            <h4>Admin Panel</h4>
-            <ul class="nav flex-column mt-4">
-                <li class="nav-item">
-                    <a class="nav-link text-white fw-bold" href="/gusoft/public/dashboard/">Produk</a>
-                    <ul class="nav flex-column ms-3">
-                        <li class="nav-item">
-                            <a class="nav-link text-white" href="/gusoft/public/add-produk">Tambah Produk</a>
-                        </li>
-                    </ul>
+        <!-- Sidebar Admin Panel -->
+        <div id="sidebar" class="sidebar p-3 text-white" style="min-height: 100vh; width: 240px; background: linear-gradient(135deg, #6c64fb, #4a458e); font-size: 0.95rem;">
+            <h6 class="fw-bold mb-3">Admin Panel</h6>
+            <ul class="nav flex-column">
+                <li class="nav-item mb-2">
+                    <a class="nav-link text-white d-flex align-items-center px-2 py-1" href="/gusoft/public/dashboard">
+                        <i class="bi bi-speedometer2 me-2"></i> Dashboard
+                    </a>
+                </li>
+                <li class="nav-item mb-2 ms-3">
+                    <a class="nav-link text-white-50 d-flex align-items-center px-2 py-1" href="/gusoft/public/add-produk">
+                        <i class="bi bi-file-earmark-plus me-2"></i> Tambah Produk
+                    </a>
                 </li>
                 <li class="nav-item mt-4">
-                    <a class="btn btn-sm btn-light" href="/gusoft/public/logout">Logout</a>
+                    <a class="btn btn-light btn-sm w-100 d-flex align-items-center justify-content-center text-dark" href="/gusoft/public/logout">
+                        <i class="bi bi-box-arrow-right me-2"></i> Logout
+                    </a>
                 </li>
             </ul>
         </div>
