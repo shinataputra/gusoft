@@ -64,7 +64,7 @@ $categories = $kategoriStmt->fetchAll();
                 <div class="col-md-6 mb-5 mb-md-0" data-aos="fade-right" data-aos-delay="100">
                     <h1 class="display-4 fw-bold" style="color: #4a458e;">Gudang Software</h1>
                     <p class="lead" style="color: #33334b;">Temukan berbagai aplikasi terbaik untuk kebutuhan harian maupun profesional Anda. Mudah, cepat, dan terpercaya.</p>
-                    <a href="#produk" class="btn btn-lg mt-4 px-4 py-2" style="background-color: #6c64fb; color: #fff; border-radius: 10px;">
+                    <a href="/gusoft/public/catalog" class="btn btn-lg mt-4 px-4 py-2" style="background-color: #6c64fb; color: #fff; border-radius: 10px;">
                         Jelajahi Sekarang
                     </a>
                     <p class="mt-3 text-muted fst-italic" style="font-size: 0.95rem;">
@@ -356,13 +356,13 @@ $categories = $kategoriStmt->fetchAll();
 
 
         async function loadProducts(kategoriId, limit, offset) {
-            const response = await fetch(`/gusoft/app/dashboard/load_produk.php?kategori=${kategoriId}&offset=${offset}&limit=${limit}`);
+            const response = await fetch(`/gusoft/app/page/load_produk.php?kategori=${kategoriId}&offset=${offset}&limit=${limit}`);
             const html = await response.text();
             document.getElementById(`produk-container-${kategoriId}`).insertAdjacentHTML('beforeend', html);
         }
 
         async function getTotalProducts(kategoriId) {
-            const res = await fetch(`/gusoft/app/dashboard/load_produk.php?count_only=1&kategori=${kategoriId}`);
+            const res = await fetch(`/gusoft/app/page/load_produk.php?count_only=1&kategori=${kategoriId}`);
             const json = await res.json();
             return json.total || 0;
         }

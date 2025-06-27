@@ -1,59 +1,47 @@
 <?php
-require __DIR__ . '../../db.php';
+if (session_status() === PHP_SESSION_NONE) session_start();
+require_once __DIR__ . '/../db.php';
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $name     = $_POST['name'];
-    $email    = $_POST['email'];
-    $whatsapp = $_POST['whatsapp'];
-    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $name     = trim($_POST['name']);
+    $email    = trim($_POST['email']);
+    $password = $_POST['password'];
+    $phone    = trim($_POST['phone']);
+    $address  = trim($_POST['address']);
 
-    $stmt = $pdo->prepare("INSERT INTO users (name, email, whatsapp, password) VALUES (?, ?, ?, ?)");
-    $stmt->execute([$name, $email, $whatsapp, $password]);
+    // Validasi kosong
+    if (!$name || !$email || !$password || !$phone) {
+        $_SESSION['error'] = "Semua kolom wajib diisi kecuali alamat.";
+        header("Location: /gusoft/register");
+        exit;
+    }
 
-    $_SESSION['success'] = "Registrasi berhasil. Silakan login.";
-    header("Location: login.php");
+    // Cek apakah email sudah digunakan
+    $stmt = $pdo->prepare("SELECT id FROM users WHERE email = ?");
+    $stmt->execute([$email]);
+    if ($stmt->fetch()) {
+        $_SESSION['error'] = "Email sudah terdaftar.";
+        header("Location: /gusoft/public/register");
+        exit;
+    }
+
+    // Hash password
+    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+    // Simpan ke database
+    $stmt = $pdo->prepare("INSERT INTO users (name, email, password, phone, address, role) VALUES (?, ?, ?, ?, ?, 'user')");
+    $success = $stmt->execute([$name, $email, $hashedPassword, $phone, $address]);
+
+    if ($success) {
+        $_SESSION['success'] = "Registrasi berhasil. Silakan login.";
+        header("Location: /gusoft/public/login");
+        exit;
+    } else {
+        $_SESSION['error'] = "Registrasi gagal. Silakan coba lagi.";
+        header("Location: /gusoft/public/register");
+        exit;
+    }
+} else {
+    header("Location: /gusoft/public/register");
     exit;
 }
-?>
-
-<div class="container py-5" style="max-width: 500px;" data-aos="fade-up">
-    <div class="text-center mb-4">
-        <h2 class="fw-bold" style="color: #4a458e;">Daftar Akun</h2>
-        <p class="text-muted small">Buat akun untuk menyimpan & mengakses aplikasi yang Anda beli.</p>
-    </div>
-
-    <form action="/gusoft/app/auth/register_process.php" method="POST" class="bg-white shadow rounded p-4">
-        <div class="mb-3">
-            <label for="name" class="form-label">Nama Lengkap</label>
-            <input type="text" class="form-control" name="name" id="name" required>
-        </div>
-
-        <div class="mb-3">
-            <label for="email" class="form-label">Alamat Email</label>
-            <input type="email" class="form-control" name="email" id="email" required>
-        </div>
-
-        <div class="mb-3">
-            <label for="whatsapp" class="form-label">Nomor WhatsApp</label>
-            <input type="text" class="form-control" name="whatsapp" id="whatsapp" placeholder="08xxxxxxxxxx" required>
-        </div>
-
-        <div class="mb-3">
-            <label for="password" class="form-label">Kata Sandi</label>
-            <input type="password" class="form-control" name="password" id="password" required>
-        </div>
-
-        <div class="mb-3">
-            <label for="confirm_password" class="form-label">Ulangi Kata Sandi</label>
-            <input type="password" class="form-control" name="confirm_password" id="confirm_password" required>
-        </div>
-
-        <button type="submit" class="btn w-100 text-white py-2 fw-semibold" style="background-color: #6c63ff;">Daftar Sekarang</button>
-
-        <p class="mt-3 text-center text-muted small">
-            Sudah punya akun? <a href="/gusoft/public/login" class="text-decoration-none" style="color: #6c63ff;">Login di sini</a>
-        </p>
-    </form>
-</div>
-<?php
-require __DIR__ . '/../../footer.php';
