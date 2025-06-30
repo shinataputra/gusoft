@@ -151,6 +151,21 @@
 
 
 
+.bg-accent-subtle {
+    background-color: #e9f4ff; /* warna biru terang, bisa disesuaikan */
+}
+.border-accent {
+    border-color: #339af0 !important;
+}
+.border-brand {
+    border-left: 6px solid #6c63ff; /* ganti sesuai warna brand Gudang Software */
+}
+
+
+
+
+
+
 .text-muted a {
     text-decoration: none;
     font-weight: 500;

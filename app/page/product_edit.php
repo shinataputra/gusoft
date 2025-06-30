@@ -1,6 +1,6 @@
 <?php
-session_start();
-require '../db.php';
+if (session_status() === PHP_SESSION_NONE) session_start();
+require __DIR__ . '../../db.php';
 
 if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
     header("Location: ../auth/login.php");
@@ -32,7 +32,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $price       = (int) $_POST['price'];
     $file_url    = $product['file_url'];
 
-    // Cek jika ada file baru
     if (isset($_FILES['file']) && $_FILES['file']['error'] == 0) {
         $target_dir = "../uploadapp/";
         $file_name = time() . "_" . basename($_FILES["file"]["name"]);
@@ -43,7 +42,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     }
 
-    // Update ke DB
     $stmt = $pdo->prepare("UPDATE products SET name = ?, description = ?, price = ?, file_url = ? WHERE id = ?");
     $stmt->execute([$name, $description, $price, $file_url, $id]);
 
@@ -56,8 +54,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <head>
     <meta charset="UTF-8">
-    <title>Edit Produk</title>
+    <title>Edit Produk - Admin</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/gusoft/assets/css/style.css">
     <style>
         .sidebar {
             width: 220px;
@@ -70,15 +69,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <div class="d-flex">
         <!-- Sidebar -->
         <div class="bg-dark text-white p-3 sidebar">
-            <h4>Admin Panel</h4>
-            <ul class="nav flex-column mt-4">
+            <h4 class="mb-4">Admin Panel</h4>
+            <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="admin.php">Produk</a>
-                    <ul class="nav flex-column ms-3">
-                        <li class="nav-item">
-                            <a class="nav-link text-white" href="tambah_produk.php">Tambah Produk</a>
-                        </li>
-                    </ul>
+                    <a class="nav-link text-white" href="admin.php">📦 Kelola Produk</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="tambah_produk.php">➕ Tambah Produk</a>
                 </li>
                 <li class="nav-item mt-4">
                     <a class="btn btn-sm btn-light" href="../auth/logout.php">Logout</a>
@@ -87,8 +84,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
 
         <!-- Main Content -->
-        <div class="container py-4">
-            <h3>Edit Produk</h3>
+        <main class="p-4 flex-grow-1">
+            <h3 class="fw-bold mb-3">Edit Produk</h3>
 
             <?php if ($message): ?>
                 <div class="alert alert-success"><?= $message ?></div>
@@ -96,28 +93,36 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             <form method="post" enctype="multipart/form-data" class="mt-3">
                 <div class="mb-3">
-                    <label>Nama Aplikasi</label>
+                    <label class="form-label">Nama Aplikasi</label>
                     <input type="text" name="name" value="<?= htmlspecialchars($product['name']) ?>" class="form-control" required>
                 </div>
+
                 <div class="mb-3">
-                    <label>Deskripsi</label>
-                    <textarea name="description" class="form-control" required><?= htmlspecialchars($product['description']) ?></textarea>
+                    <label class="form-label">Deskripsi</label>
+                    <textarea name="description" class="form-control" rows="4" required><?= htmlspecialchars($product['description']) ?></textarea>
                 </div>
+
                 <div class="mb-3">
-                    <label>Harga (Rp)</label>
+                    <label class="form-label">Harga (Rp)</label>
                     <input type="number" name="price" value="<?= $product['price'] ?>" class="form-control" required>
                 </div>
+
                 <div class="mb-3">
-                    <label>File Aplikasi (opsional)</label>
+                    <label class="form-label">File Aplikasi (opsional)</label>
                     <input type="file" name="file" class="form-control">
                     <?php if ($product['file_url']): ?>
-                        <small class="text-muted">File saat ini: <a href="<?= $product['file_url'] ?>" target="_blank">Download</a></small>
+                        <small class="text-muted d-block mt-1">
+                            File saat ini: <a href="<?= $product['file_url'] ?>" target="_blank">Download</a>
+                        </small>
                     <?php endif; ?>
                 </div>
-                <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
-                <a href="admin.php" class="btn btn-secondary">Kembali</a>
+
+                <div class="d-flex gap-2">
+                    <button type="submit" class="btn btn-accent">💾 Simpan Perubahan</button>
+                    <a href="admin.php" class="btn btn-secondary">← Kembali</a>
+                </div>
             </form>
-        </div>
+        </main>
     </div>
 </body>
 

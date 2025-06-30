@@ -108,7 +108,7 @@ $products = $stmt->fetchAll();
                                 <div class="d-flex justify-content-between align-items-center mb-2">
                                     <a href="<?= htmlspecialchars($p['file_url']) ?>" target="_blank" class="btn btn-sm btn-outline-success" title="Unduh"><i class="bi bi-download"></i></a>
                                     <div>
-                                        <a href="/edit-produk?id=<?= $p['id'] ?>" class="btn btn-sm btn-outline-warning me-1" title="Edit"><i class="bi bi-pencil"></i></a>
+                                        <a href="/gusoft/public/edit-produk?id=<?= $p['id'] ?>" class="btn btn-sm btn-outline-warning me-1" title="Edit"><i class="bi bi-pencil"></i></a>
                                         <a href="/gusoft/public/delete-produk?id=<?= $p['id'] ?>" class="btn btn-sm btn-outline-danger" title="Hapus" onclick="return confirm('Yakin hapus produk ini?')"><i class="bi bi-trash"></i></a>
                                     </div>
                                 </div>

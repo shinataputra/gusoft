@@ -28,7 +28,7 @@ switch ($path) {
         break;
 
     case 'register':
-        require __DIR__ . '/../app/page/register.php';
+        require __DIR__ . '/../app/auth/register.php';
         break;
 
     case 'dashboard':
@@ -42,7 +42,7 @@ switch ($path) {
         break;
 
     case 'catalog':
-        require __DIR__ . '/../app/page/katalog.php';
+        require __DIR__ . '/../app/page/catalog.php';
         break;
 
     case 'add-produk':
@@ -55,11 +55,40 @@ switch ($path) {
         require __DIR__ . '/../app/page/product_delete.php';
         break;
 
-
-    case (preg_match('/^produk\/(\d+)$/', $path, $m) ? true : false):
+    case (preg_match('/^produk\/(\d+)(?:-[a-z0-9\-]+)?$/', $path, $m) ? true : false):
         $_GET['id'] = $m[1];
-        require __DIR__ . '/../app/page/produk_detail.php';
+        require __DIR__ . '/../app/page/aplication_detail.php';
         break;
+
+    case (preg_match('/^order\/(\d+)$/', $path, $m) ? true : false):
+        $_GET['id'] = $m[1];
+        require __DIR__ . '/../app/page/order.php';
+        break;
+
+    // case (preg_match('/^payment\/(\d+)$/', $path, $m) ? true : false):
+    //     $_GET['product_id'] = $m[1];
+    //     require __DIR__ . '/../app/page/payment_duitku.php';
+    //     break;
+
+    case ($path === 'payment' && $_SERVER['REQUEST_METHOD'] === 'POST'):
+        require __DIR__ . '/../app/page/payment_duitku.php';
+        break;
+
+    case 'callback':
+        require __DIR__ . '/../app/page/callback.php';
+        break;
+
+    case 'pembayaran_sukses':
+        require __DIR__ . '/../app/page/pembayaran_sukses.php';
+        break;
+
+
+
+
+
+
+
+
 
     default:
         http_response_code(404);
